@@ -1,0 +1,51 @@
+# Inbuilt libraries
+import sys
+import json
+import datetime
+from datetime import timedelta
+import logging
+
+# aws sdk
+import time
+import boto3
+
+# aws glue libraries
+from awsglue.transforms import *
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from awsglue.utils import getResolvedOptions
+
+# Pyspark libraries
+from pyspark.sql.functions import *
+from pyspark.context import SparkContext
+from pyspark.sql import functions as sf
+from pyspark.sql.functions import col
+from hdbcli import dbapi
+import pyodbc
+
+#####################################Defining Aurora Tables ########################################
+CONFIG_TABLE = 'odx_generic_tbl_extract_config'
+CONFIG_TABLE_MANUAL = 'odx_generic_tbl_extract_config_manual'
+AUDIT_JOB_SPECIFICATIONS_TABLE = 'odx_generic_tbl_audit_job_specifications'
+AUDIT_LINE_TABLE = 'odx_generic_tbl_audit_control_line'
+RESTART_TABLE = 'odx_generic_tbl_extract_manage_restartability'
+TEMP_TABLE = 'odx_generic_tbl_extract_work_control_parameters'
+AUDIT_HEADER_TABLE = 'odx_generic_tbl_audit_control_header'
+ODW_EXTRACT_LOG = 'ODX_GENERIC_TBL_EXTRACT_LOG'
+ODW_SCHEMA_EXTRACT_LOG = 'ODW_COMMON'
+
+
+class Driver(object):
+    def __init__(self):
+        ##################Fetching Job Arguments#################################
+        print(sys.argv)
+        param_flag=None
+        
+
+
+def main():
+    Driver()
+
+
+if __name__ == "__main__":
+    main()
