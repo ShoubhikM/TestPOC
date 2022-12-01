@@ -1,0 +1,44 @@
+{
+  "name" : "jb_odx_tbl_generic_ingest",
+  "description" : "",
+  "role" : "arn:aws:iam::802610394370:role/GlueServiceRole",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1000
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://hp-glue-scripts/hp-erp-itg/odx_generic_tbl_extract_scripts/jb_odx_tbl_generic_ingest.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--odx_schema_name" : "odx_aurora_qa",
+    "--enable-job-insights" : "false",
+    "--additional-python-modules" : "hdbcli==2.12.22",
+    "--sap_secret" : "QSB",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--odx_config_id" : "BB",
+    "--region_name" : "us-west-2",
+    "--job-bookmark-option" : "job-bookmark-enable",
+    "--job-language" : "python",
+    "--TempDir" : "s3://hp-glue-scripts/temp/",
+    "--aurora_db_secret" : "Aurora-DB",
+    "--extra-jars" : "s3://hp-glue-scripts/library/mysql-connector-java-8.0.25.jar,s3://hp-glue-scripts/library/ngdbc.jar"
+  },
+  "connections" : {
+    "connections" : [ "ITG", "odx-aurora" ]
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 2,
+  "timeout" : 5760,
+  "maxCapacity" : 2.0,
+  "glueVersion" : "4.0",
+  "numberOfWorkers" : 2,
+  "workerType" : "Standard",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "TestPOC",
+    "branch" : "main",
+    "folder" : "abc_test"
+  }
+}
